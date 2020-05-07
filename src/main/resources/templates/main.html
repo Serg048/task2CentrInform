@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Spring Security Приложение</title>
+</head>
+
+<body>
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Выйти"/>
+</form>
+<h1>Welcome!</h1>
+
+<!--<p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>-->
+<div th:if="${message}">
+    <!--/*@thymesVar id="message" type=""*/-->
+    <h2 th:text="${message}"/>
+</div>
+
+<div>
+    <form method="POST" enctype="multipart/form-data" action="/">
+        <table>
+            <tr><td>Файл загрузки:</td><td><input type="file" name="file" /></td></tr>
+            <tr><td></td><td><input type="submit" value="загрузить" /></td></tr>
+        </table>
+    </form>
+</div>
+
+<div>
+    <ul>
+        <li th:each="file : ${files}">
+            <a th:href="${file}" th:text="${file}" />
+        </li>
+    </ul>
+</div>
+
+<!--<div>
+    <form method="POST" enctype="multipart/form-data" action="/run">
+        <table>
+
+            <tr><td></td><td><input type="submit" value="запустить формирование файла" /></td></tr>
+        </table>
+    </form>
+</div>-->
+</body>
+</html>
